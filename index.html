@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ISW Hoogeland | T&T Projecten</title>
+    <style>
+        :root {
+            --isw-blauw: #004a99;
+            --isw-oranje: #f39200;
+            --bg: #f8fafd;
+            --wit: #ffffff;
+            --tekst: #2d3436;
+        }
+
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; margin: 0; background-color: var(--bg); color: var(--tekst); line-height: 1.6; }
+        
+        /* HEADER */
+        .header-banner { background: var(--wit); padding: 15px; text-align: center; border-bottom: 5px solid var(--isw-oranje); }
+        .logo-img { max-width: 250px; height: auto; cursor: pointer; width: 80%; }
+
+        /* NAVIGATIE & HAMBURGER MENU */
+        nav { 
+            background: var(--isw-blauw); 
+            position: sticky; 
+            top: 0; 
+            z-index: 1000; 
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+            padding: 0 10px;
+        }
+
+        .nav-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .nav-links { display: flex; gap: 5px; }
+        
+        nav button { 
+            background: none; border: none; color: white; padding: 15px 15px; 
+            font-weight: 600; text-transform: uppercase; cursor: pointer; 
+            font-size: 0.85rem; transition: 0.3s; 
+        }
+        nav button:hover { background: var(--isw-oranje); }
+
+        /* Hamburger knop (standaard onzichtbaar op pc) */
+        .hamburger { display: none; font-size: 1.5rem; background: none; border: none; color: white; cursor: pointer; padding: 15px; }
+
+        /* MOBIELE WEERGAVE (Max breedte 768px) */
+        @media (max-width: 768px) {
+            .nav-container { justify-content: space-between; }
+            .hamburger { display: block; } /* Toon hamburger */
+            
+            .nav-links { 
+                display: none; /* Verberg menu items standaard */
+                flex-direction: column; 
+                width: 100%; 
+                position: absolute; 
+                top: 60px; /* Hoogte van de balk */
+                left: 0; 
+                background: var(--isw-blauw); 
+                border-top: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .nav-links.show { display: flex; } /* Toon menu als class 'show' er is */
+            
+            nav button { 
+                text-align: left; 
+                padding: 15px 20px; 
+                width: 100%; 
+                border-bottom: 1px solid rgba(255,255,255,0.1); 
+            }
+        }
+
+        /* CONTENT */
+        .container { max-width: 1100px; margin: 20px auto; padding: 0 15px; }
+        
+        section { display: none; background: var(--wit); padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); }
+        section.active { display: block; animation: fadeIn 0.4s; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .center-title { text-align: center; color: var(--isw-blauw); margin-bottom: 25px; }
+        
+        /* GRIDS AANPASSEN VOOR MOBIEL */
+        .home-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+        
+        @media (max-width: 768px) {
+            .home-grid { grid-template-columns: 1fr; } /* Onder elkaar op mobiel */
+            section { padding: 20px; } /* Minder padding op mobiel */
+        }
+
+        .btn-card { 
+            border: none; border-radius: 12px; padding: 30px; background: white; 
+            text-align: left; cursor: pointer; transition: 0.3s; position: relative; 
+            width: 100%; box-shadow: 0 4px 10px rgba(0,0,0,0.08); 
+            display: flex; flex-direction: column; box-sizing: border-box; 
+        }
+        
+        .btn-card img { 
+            width: 100%; height: 120px; object-fit: contain; 
+            margin-top: 20px; margin-bottom: 20px; background: none; border-radius: 4px;
+        }
+        
+        .btn-card h3 { margin-top: 0; font-size: 1.3rem; color: var(--isw-blauw); margin-bottom: 10px; }
+        .btn-card p { color: #555; font-size: 0.95rem; flex-grow: 1; margin: 0; }
+        .btn-card strong { color: var(--isw-oranje); font-size: 0.9rem; display: block; text-transform: uppercase; font-weight: bold; margin-top: auto; }
+        .btn-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.12); }
+
+        h2 { color: var(--isw-blauw); border-bottom: 2px solid #eee; padding-bottom: 10px; font-size: 1.5rem; }
+        h3 { color: var(--isw-blauw); margin-top: 0; margin-bottom: 15px; font-size: 1.2rem; }
+
+        /* SPLIT LAYOUT (Links buttons, rechts tekst) */
+        .project-split { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 20px; }
+        
+        @media (max-width: 768px) {
+            .project-split { grid-template-columns: 1fr; gap: 30px; } /* Stacken op mobiel */
+            .col-left { order: 1; } /* Eerst buttons */
+            .col-right { order: 2; } /* Dan tekst */
+        }
+
+        .pve-lijst { background: #f9f9f9; padding: 20px; border-radius: 8px; border-left: 4px solid var(--isw-oranje); list-style-type: none; margin-top: 0; }
+        .pve-lijst li { margin-bottom: 10px; padding-left: 25px; position: relative; }
+        .pve-lijst li::before { content: "✔"; position: absolute; left: 0; color: var(--isw-oranje); font-weight: bold; }
+
+        /* DOWNLOAD BUTTONS */
+        .download-stack { display: flex; flex-direction: column; gap: 15px; }
+        
+        .download-card {
+            background: #fff; border: 1px solid #e0e0e0; border-radius: 8px; padding: 15px 20px;
+            text-decoration: none; transition: 0.2s; display: block;
+        }
+        .download-card:hover { border-color: var(--isw-oranje); box-shadow: 0 5px 15px rgba(0,0,0,0.05); transform: translateX(5px); background: #fffdf5; }
+        
+        .download-title { color: var(--isw-blauw); font-weight: 700; font-size: 1rem; margin-bottom: 3px; display: flex; align-items: center; gap: 8px; }
+        .download-desc { color: #666; font-size: 0.85rem; margin: 0; line-height: 1.4; }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
+        .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; }
+        .card img { width: 100%; height: 160px; object-fit: cover; }
+        .card-body { padding: 15px; }
+        .btn-small { display: inline-block; background: var(--isw-blauw); color: white; padding: 8px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; margin-top: 10px; }
+
+        footer { text-align: center; padding: 30px; color: #95a5a6; font-size: 0.8rem; }
+    </style>
+</head>
+<body>
+
+<div class="header-banner">
+    <img src="ISW-Hoogeland-logo-.svg" alt="ISW Logo" class="logo-img" onclick="showSection('home')">
+</div>
+
+<nav>
+    <div class="nav-container">
+        <button class="hamburger" onclick="toggleMenu()">☰ Menu</button>
+        
+        <div class="nav-links" id="navLinks">
+            <button onclick="showSection('home')">🏠 Home</button>
+            <button onclick="showSection('kweekmuur')">🌱 Kweken in huis</button>
+            <button onclick="showSection('voedingsreep')">🍫 Voedingsreep</button>
+            <button onclick="showSection('inspiratie')">💡 Inspiratie</button>
+            <button onclick="showSection('tutorials')">🎥 Tutorials</button>
+            <button onclick="showSection('downloads')">📂 Bestanden</button>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <section id="home" class="active">
+        <div class="center-title">
+            <h1>T&T Projectportaal</h1>
+            <p>Welkom bij het portaal voor Technologie & Toepassing op ISW Hoogeland.</p>
+        </div>
+        
+        <div class="home-grid">
+            <button class="btn-card" onclick="showSection('kweekmuur')">
+                <h3>Project A: Kweken in huis</h3>
+                <p>In dit project maak je een kweeksysteem dat aan de muur hangt. Je bouwt een prototype waarbij biologie, techniek en ontwerp samenkomen.</p>
+                <img src="project-a.png" alt="Kweken in huis">
+                <strong>Bekijk Opdracht & Eisen →</strong>
+            </button>
+            
+            <button class="btn-card" onclick="showSection('voedingsreep')">
+                <h3>Project B: Voedingsreep</h3>
+                <p>Ontdek hoe gezonde repen worden gemaakt in samenwerking met Koppert Cress en BoereGoed. Van cressen proeven tot eindproduct.</p>
+                <img src="project-b.png" alt="Voedingsreep">
+                <strong>Bekijk Opdracht & Eisen →</strong>
+            </button>
+        </div>
+    </section>
+
+    <section id="kweekmuur">
+        <h2>🌱 Project A: Kweken in huis</h2>
+        <p>In dit project maak je een kweeksysteem dat aan de muur hangt. Je bouwt een prototype, een werkend model van een idee.</p>
+        
+        <div class="project-split">
+            
+            <div class="col-left">
+                <h3>📂 Aan de slag</h3>
+                <div class="download-stack">
+                    
+                    <a href="Kweken in huis leerlingenboekje.pdf" target="_blank" class="download-card">
+                        <span class="download-title">📄 1. Opdrachtboekje</span>
+                        <p class="download-desc">Lees dit eerst! Hierin staat stap voor stap wat je moet doen.</p>
+                    </a>
+
+                    <a href="bijlage wetenschappelijk verslag.pdf" target="_blank" class="download-card">
+                        <span class="download-title">📝 2. Overzicht wetenschappelijk verslag</span>
+                        <p class="download-desc">Een leeg verslag. Vul deze in tijdens je proefje met de planten.</p>
+                    </a>
+
+                    <a href="https://techniektest.my.canva.site/wetenschappelijk-onderzoek" target="_blank" class="download-card">
+                        <span class="download-title">🧪 3. Oefenen met wetenschappelijk onderzoeksverslag</span>
+                        <p class="download-desc">Oefen hier hoe je een goed verslag schrijft, voordat je met het echte werk begint.</p>
+                    </a>
+
+                    <a href="Beoordelingsformulier Kweekmuur opdracht A  2025 - 2026.docx" target="_blank" class="download-card">
+                        <span class="download-title">✅ 4. Beoordelingsformulier (Checklist)</span>
+                        <p class="download-desc">Controleer hiermee zelf of je alles af hebt voor een goed cijfer.</p>
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="col-right">
+                <h3>📋 Waar moet het aan voldoen? (Programma van Eisen)</h3>
+                <ul class="pve-lijst">
+                    <li><strong>Afmeting:</strong> Een houten plank van precies 40 cm breed en 30 cm hoog.</li>
+                    <li><strong>Planten:</strong> De kweekplantjes uit de kast moeten erin verwerkt zijn.</li>
+                    <li><strong>Licht:</strong> De LED-lampjes werken en worden bestuurd door de Micro:bit.</li>
+                    <li><strong>Water:</strong> De waterpomp is aangesloten en werkt via de Micro:bit.</li>
+                    <li><strong>Ontwerp:</strong> Het ziet er netjes uit (geen losse draden zichtbaar) en past in een modern huis.</li>
+                    <li><strong>Onderhoud:</strong> Je kunt de plantenbakjes makkelijk loshalen.</li>
+                    <li><strong>Onderzoek:</strong> Je hebt onderzocht wat het beste licht en voeding is.</li>
+                </ul>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="voedingsreep">
+        <h2>🍫 Project B: Voedingsreep</h2>
+        <p>In dit project ga je ontdekken hoe gezonde en lekkere voedingsrepen worden gemaakt. Je werkt met echte bedrijven: Koppert Cress en BoereGoed.</p>
+        
+        <div class="project-split">
+            <div class="col-left">
+                 <h3>📂 Aan de slag</h3>
+                 <div class="download-stack">
+                    <a href="voedingsreep  leerlingenboekje.pdf" target="_blank" class="download-card">
+                        <span class="download-title">📄 Opdrachtboekje</span>
+                        <p class="download-desc">Het boekje met de hele opdracht.</p>
+                    </a>
+                    <a href="#" class="download-card" style="opacity:0.6">
+                        <span class="download-title">✅ Puntenlijst</span>
+                        <p class="download-desc">Nog niet beschikbaar.</p>
+                    </a>
+                 </div>
+            </div>
+
+            <div class="col-right">
+                <h3>📋 Waar moet het aan voldoen? (Programma van Eisen)</h3>
+                <ul class="pve-lijst">
+                    <li><strong>Ingrediënt:</strong> Er moet tuinkers (cress) in de reep zitten.</li>
+                    <li><strong>Recept:</strong> Je hebt een duidelijk stappenplan geschreven zodat iemand anders de reep ook kan maken.</li>
+                    <li><strong>Etiket:</strong> Je hebt berekend hoeveel calorieën erin zitten.</li>
+                    <li><strong>Verpakking:</strong> Alle verplichte info en logo's staan erop.</li>
+                    <li><strong>Video:</strong> Een korte TikTok-stijl video (30-60 sec) om de reep te verkopen.</li>
+                    <li><strong>Presentatie:</strong> Je weet voor wie de reep is en wat hij kost.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="inspiratie">
+        <h2>💡 Inspiratie</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="inspiratie ikea.png" alt="IKEA Skadis Inspiratie">
+                <div class="card-body">
+                    <h4>IKEA Skadis</h4>
+                    <p>Inspiratie voor een modulair wandsysteem.</p>
+                    <a href="https://www.ikea.com/nl/nl/p/skadis-pegboard-wit-10321618/" target="_blank" class="btn-small">Bekijk details</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://img.youtube.com/vi/RQ6ygdXAegw/mqdefault.jpg">
+                <div class="card-body">
+                    <h4>French Cleat</h4>
+                    <p>Slim ophangsysteem voor aan de muur.</p>
+                    <a href="https://youtu.be/RQ6ygdXAegw" target="_blank" class="btn-small">Bekijk video</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="tutorials">
+        <h2>🎥 SketchUp Tutorials</h2>
+        <div class="grid">
+            <div class="card">
+                <img src="https://img.youtube.com/vi/GH2zh_OzG28/mqdefault.jpg">
+                <div class="card-body">
+                    <h4>Push-Pull functie</h4>
+                    <p>Van 2D schets naar 3D model.</p>
+                    <a href="https://youtu.be/GH2zh_OzG28" target="_blank" class="btn-small">Start video</a>
+                </div>
+            </div>
+            <div class="card">
+                <img src="https://img.youtube.com/vi/1nkhkLqFupM/mqdefault.jpg">
+                <div class="card-body">
+                    <h4>Tape Measure tool</h4>
+                    <p>Houten plaat exact op 40x30 cm afmeten.</p>
+                    <a href="https://youtu.be/1nkhkLqFupM" target="_blank" class="btn-small">Start video</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="downloads">
+        <h2>📂 Bestanden Overzicht</h2>
+        <div class="download-stack" style="max-width: 600px;">
+            <a href="Kweken in huis leerlingenboekje.pdf" target="_blank" class="download-card">
+                <span class="download-title">📄 Boekje A</span>
+                <p class="download-desc">Leerlingenboekje Kweken in huis.</p>
+            </a>
+            <a href="voedingsreep  leerlingenboekje.pdf" target="_blank" class="download-card">
+                <span class="download-title">📄 Boekje B</span>
+                <p class="download-desc">Leerlingenboekje Voedingsreep.</p>
+            </a>
+            <a href="bijlage wetenschappelijk verslag.pdf" target="_blank" class="download-card">
+                <span class="download-title">📝 Invulblad Verslag</span>
+                <p class="download-desc">Leeg verslag voor Project A.</p>
+            </a>
+            <a href="Beoordelingsformulier Kweekmuur opdracht A  2025 - 2026.docx" target="_blank" class="download-card">
+                <span class="download-title">✅ Nakijkmodel A</span>
+                <p class="download-desc">Beoordelingsformulier voor project A.</p>
+            </a>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>&copy; 2026 ISW Hoogeland - Technologie & Toepassing</p>
+</footer>
+
+<script>
+    // Functie om secties te tonen en menu automatisch te sluiten op mobiel
+    function showSection(id) {
+        const sections = document.querySelectorAll('section');
+        sections.forEach(s => { s.style.display = 'none'; s.classList.remove('active'); });
+        
+        const target = document.getElementById(id);
+        if (target) { target.style.display = 'block'; target.classList.add('active'); }
+        
+        // Menu sluiten na klik op mobiel
+        const navLinks = document.getElementById('navLinks');
+        if (navLinks.classList.contains('show')) {
+            navLinks.classList.remove('show');
+        }
+        
+        window.scrollTo(0, 0);
+    }
+
+    // Functie voor het hamburgermenu
+    function toggleMenu() {
+        const navLinks = document.getElementById('navLinks');
+        navLinks.classList.toggle('show');
+    }
+</script>
+
+</body>
+</html>
