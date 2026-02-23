@@ -88,12 +88,12 @@
         /* INSPIRATIE & TUTORIALS GRIDS */
         .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-top: 20px; }
         .card { border: 1px solid #eee; border-radius: 10px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
-        .card img { width: 100%; height: 160px; object-fit: contain; background: #333; } 
-        .card img[src*="ikea"] { background: #fff; }
+        .card img { width: 100%; height: 160px; object-fit: cover; background: #eee; } 
+        .card img[src*="ikea"] { background: #fff; object-fit: contain; }
         .card-body { padding: 15px; flex-grow: 1; display: flex; flex-direction: column; }
         .card-body h4 { margin: 0 0 5px 0; color: var(--isw-blauw); }
         .card-body p { margin: 0 0 10px 0; font-size: 0.9rem; color: #666; flex-grow: 1; }
-        .btn-small { display: inline-block; background: var(--isw-blauw); color: white; padding: 8px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; margin-top: auto; align-self: flex-start; }
+        .btn-small { display: inline-block; background: var(--isw-blauw); color: white; padding: 8px 12px; border-radius: 4px; text-decoration: none; font-size: 0.85rem; margin-top: auto; align-self: flex-start; text-align: center; }
 
         /* TIJDLIJN & FAQ */
         .timeline { border-left: 4px solid var(--isw-oranje); padding-left: 25px; margin: 30px 0; margin-left: 10px; }
@@ -203,21 +203,25 @@
         <h2 style="text-align: center; margin-top: 50px; border-bottom: none; color: var(--isw-blauw);">Vaardigheidsles</h2>
         <div class="home-grid" style="grid-template-columns: 1fr; max-width: 600px; margin: 0 auto;">
             <button class="btn-card" onclick="showSection('vaardigheidsles')" style="text-align: center; align-items: center;">
-                <h3>💻 Vaardigheidsles Micro:Bit</h3>
-                <p style="text-align: center; margin-bottom: 20px;">Leer de basis van het programmeren met de Micro:Bit. Vind hier het leerlingenboekje en de checklist voor de docent.</p>
+                <h3>💻 Vaardigheidsles & Smoothie</h3>
+                <p style="text-align: center; margin-bottom: 20px;">Leer de basis van het programmeren met de Micro:Bit én start met de eerste praktijkopdracht: een smoothie maken! Vind hier de boekjes en de checklist.</p>
                 <strong>Bekijk Lesmateriaal →</strong>
             </button>
         </div>
     </section>
 
     <section id="vaardigheidsles">
-        <h2>💻 Vaardigheidsles Micro:Bit</h2>
-        <p>Voordat we aan de grote projecten beginnen, oefenen we de basisvaardigheden met de Micro:Bit. Hier vind je de benodigde documenten.</p>
+        <h2>💻 Vaardigheidsles & Smoothie Maken</h2>
+        <p>Voordat we aan de grote projecten beginnen, oefenen we basisvaardigheden zoals programmeren met de Micro:Bit en het berekenen en maken van een gezonde smoothie. Hier vind je alle benodigde documenten.</p>
         
         <div class="project-split">
             <div class="col-left">
                 <h3>📂 Lesmateriaal & Checklist</h3>
                 <div class="download-stack">
+                    <a href="smoothie maken leerling boekje.docx" target="_blank" class="download-card">
+                        <span class="download-title">📄 Smoothie maken</span>
+                        <p class="download-desc">Het leerlingenboekje met de theorie, berekeningen en opdrachten voor de smoothie.</p>
+                    </a>
                     <a href="Vaardigheidsles MicroBit 2526.pdf" target="_blank" class="download-card">
                         <span class="download-title">📄 Vaardigheidsles MicroBit 2526</span>
                         <p class="download-desc">Het leerlingenboekje met de theorie en opdrachten voor de Micro:Bit.</p>
@@ -439,12 +443,20 @@
     </section>
 
     <section id="tutorials">
-        <h2>🎥 SketchUp Tutorials</h2>
+        <h2>🎥 Tutorials & Uitleg</h2>
         <div class="grid">
+            <div class="card">
+                <img src="berekening-smoothie.jpg" alt="Berekening Smoothie" style="background: #e0e0e0;">
+                <div class="card-body">
+                    <h4>Berekening Smoothie</h4>
+                    <p>Uitleg over hoe je de juiste verhoudingen en voedingswaarden berekent voor je smoothie.</p>
+                    <a href="smoothie maken leerling boekje.docx" target="_blank" class="btn-small">Bekijk uitleg in doc</a>
+                </div>
+            </div>
             <div class="card">
                 <img src="https://img.youtube.com/vi/GH2zh_OzG28/mqdefault.jpg">
                 <div class="card-body">
-                    <h4>Push-Pull functie</h4>
+                    <h4>Push-Pull functie (SketchUp)</h4>
                     <p>Van 2D schets naar 3D model.</p>
                     <a href="https://youtu.be/GH2zh_OzG28" target="_blank" class="btn-small">Start video</a>
                 </div>
@@ -452,7 +464,7 @@
             <div class="card">
                 <img src="https://img.youtube.com/vi/1nkhkLqFupM/mqdefault.jpg">
                 <div class="card-body">
-                    <h4>Tape Measure tool</h4>
+                    <h4>Tape Measure tool (SketchUp)</h4>
                     <p>Houten plaat exact op 40x30 cm afmeten.</p>
                     <a href="https://youtu.be/1nkhkLqFupM" target="_blank" class="btn-small">Start video</a>
                 </div>
@@ -463,6 +475,10 @@
     <section id="downloads">
         <h2>📂 Bestanden Overzicht</h2>
         <div class="download-stack" style="max-width: 600px;">
+            <a href="smoothie maken leerling boekje.docx" target="_blank" class="download-card">
+                <span class="download-title">📄 Smoothie maken</span>
+                <p class="download-desc">Leerlingenboekje Smoothie maken (Word).</p>
+            </a>
             <a href="Vaardigheidsles MicroBit 2526.pdf" target="_blank" class="download-card">
                 <span class="download-title">📄 Vaardigheidsles Micro:Bit</span>
                 <p class="download-desc">Leerlingenboekje Vaardigheidsles 2526.</p>
