@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tutorials | ISW Hoogeland</title>
+  <link rel="icon" type="image/svg+xml" href="assets/img/original/isw-hoogeland-logo.svg">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <div class="header-banner">
+    <a href="index.html"><img src="assets/img/original/isw-hoogeland-logo.svg" alt="ISW Hoogeland" class="logo-img"></a>
+  </div>
+
+  <nav>
+    <div class="nav-container">
+      <button class="hamburger" onclick="toggleMenu()">&#9776; Menu</button>
+      <div class="nav-links-wrap" id="navLinks">
+        <a href="index.html">&#127968; Home</a>
+        <a href="vaardigheidsles.html">&#128187; Vaardigheidsles</a>
+        <a href="planning-faq.html">&#128197; Planning &amp; FAQ</a>
+        <a href="project-a.html">&#127793; Kweken in huis</a>
+        <a href="project-b.html">&#127851; Voedingsreep</a>
+        <a href="inspiratie.html">&#128161; Inspiratie</a>
+        <a class="active" href="tutorials.html">&#127909; Tutorials</a>
+        <a href="bestanden.html">&#128194; Bestanden</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="page-wrap">
+
+    <section>
+      <h2>&#127909; Tutorials &amp; Uitleg</h2>
+      <p>Klik op &#9654; Afspelen om de video direct hier te bekijken &mdash; je hoeft de pagina niet te verlaten.</p>
+
+      <div class="cards-grid">
+
+        <div class="media-card">
+          <div class="yt-wrap">
+            <img class="yt-thumb" src="assets/img/original/project-a.png" alt="Berekening smoothie" style="object-fit:contain;background:#f0f4fa;">
+            <a class="yt-overlay doc-overlay" href="assets/docs/original/smoothie-maken-leerling-boekje.docx" target="_blank" aria-label="Open smoothie boekje">
+              <span class="yt-play-btn">&#128196;</span>
+            </a>
+          </div>
+          <div class="card-body">
+            <h4>Berekening Smoothie</h4>
+            <p>Uitleg over hoe je de juiste verhoudingen en voedingswaarden berekent voor je smoothie.</p>
+            <a href="assets/docs/original/smoothie-maken-leerling-boekje.docx" target="_blank" class="btn-small">Bekijk uitleg in doc</a>
+          </div>
+        </div>
+
+        <div class="media-card">
+          <div class="yt-wrap" data-ytid="GH2zh_OzG28">
+            <img class="yt-thumb" src="https://img.youtube.com/vi/GH2zh_OzG28/mqdefault.jpg" alt="SketchUp Push-Pull">
+            <button class="yt-overlay" aria-label="Speel video af" onclick="loadYT(this)">
+              <span class="yt-play-btn">&#9654;</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <h4>Push-Pull functie (SketchUp)</h4>
+            <p>Van 2D schets naar 3D model.</p>
+          </div>
+        </div>
+
+        <div class="media-card">
+          <div class="yt-wrap" data-ytid="1nkhkLqFupM">
+            <img class="yt-thumb" src="https://img.youtube.com/vi/1nkhkLqFupM/mqdefault.jpg" alt="SketchUp Tape Measure">
+            <button class="yt-overlay" aria-label="Speel video af" onclick="loadYT(this)">
+              <span class="yt-play-btn">&#9654;</span>
+            </button>
+          </div>
+          <div class="card-body">
+            <h4>Tape Measure tool (SketchUp)</h4>
+            <p>Houten plaat exact op 40x30 cm afmeten.</p>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <button id="dmToggle" class="dm-toggle" aria-label="Donkere modus" title="Donkere modus aan/uit">&#127769;</button>
+
+  <a href="https://gemini.google.com/gem/1aVuYFTCHuiTN42hnUS8M2nXHdfToKU4S?usp=sharing" target="_blank" rel="noopener noreferrer" class="ai-fab">
+    &#129302; Hulp nodig? Vraag het de AI
+  </a>
+
+  <footer>
+    <p>&copy; 2026 ISW Hoogeland &ndash; Technologie &amp; Toepassing</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
